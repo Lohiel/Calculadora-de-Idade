@@ -1,12 +1,17 @@
-let ano_de_nascimento = prompt("Digite o seu ano de nascimento: ");
 let ano_atual = 2025;
-let idade = ano_atual - ano_de_nascimento;
-console.log(`Você tem ${idade} anos.`);
-document.body.innerHTML = (`Você tem ${idade} anos.`);
 
-function aumentarFonte() {
-    let texto = document.body;
-    let tamanhoAtual = parseFloat(window.getComputedStyle(texto).fontSize);
-    let novoTamanho = tamanhoAtual + 2;
-    texto.style.fontSize = novoTamanho + "px";
+function calcularIdade(ano_de_nascimento) {
+    let idade = ano_atual - ano_de_nascimento;
+    return idade;
+}
+
+function exibirIdade() {
+    let ano_de_nascimento = parseInt(document.getElementById("ano_de_nascimento").value);
+    if (isNaN(ano_de_nascimento) || ano_de_nascimento > ano_atual) {
+        alert("Por favor, digite um ano válido, menor ou igual a " + ano_atual + ".");
+        return;
+    }
+    let idade = calcularIdade(ano_de_nascimento);
+    let resultado = document.getElementById("resultado");
+    resultado.innerHTML = `Sua idade é: ${idade} anos.`;
 }
